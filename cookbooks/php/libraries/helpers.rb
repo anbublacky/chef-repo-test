@@ -1,5 +1,5 @@
 #
-# Author::  Joshua Timberman (<joshua@getchef.com>)
+# Author::  Joshua Timberman (<joshua@opscode.com>)
 # Cookbook Name:: php
 # Libraries:: helpers
 #

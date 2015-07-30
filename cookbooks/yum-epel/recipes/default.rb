@@ -1,5 +1,5 @@
 #
-# Author:: Sean OMeara (<someara@chef.io>)
+# Author:: Sean OMeara (<someara@getchef.com>)
 # Recipe:: yum-epel::default
 #
 # Copyright 2013, Chef

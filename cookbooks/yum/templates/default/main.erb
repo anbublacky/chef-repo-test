@@ -226,7 +226,7 @@ sslclientcert=<%= @config.sslclientcert %>
 sslclientkey=<%= @config.sslclientkey %>
 <% end %>
 <% unless @config.sslverify.nil? %>
-sslverify=<%= ( @config.sslverify ) ? 'True' : 'False' %>
+sslverify=<%= @config.sslverify %>
 <% end %>
 <% if @config.syslog_device %>
 syslog_device=<%= @config.syslog_device %>
