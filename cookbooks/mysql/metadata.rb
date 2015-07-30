@@ -24,8 +24,8 @@ supports 'scientific'
 supports 'suse'
 supports 'windows'
 
-depends 'openssl',         '~> 1.1'
-depends 'build-essential', '~> 1.4'
+depends 'openssl',         '~> 4.0'
+depends 'build-essential', '~> 2.2.3'
 
 # wat
 depends 'homebrew'
