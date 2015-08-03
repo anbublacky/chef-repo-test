@@ -1,10 +1,10 @@
 #
-# Author:: Joshua Timberman (<jtimberman@chef.io>)
+# Author:: Joshua Timberman (<jtimberman@opscode.com>)
 # Author:: Graeme Mathieson (<mathie@woss.name>)
 # Cookbook Name:: homebrew
 # Libraries:: homebrew_mixin
 #
-# Copyright 2011-2013, Chef Software, Inc.
+# Copyright 2011-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ module Homebrew
     def homebrew_owner
       if defined?(Chef::Mixin::HomebrewUser)
         begin
-          require 'etc'
-          @homebrew_owner ||= ::Etc.getpwuid(Chef12HomebrewUser.new.find_homebrew_uid).name
+          @homebrew_owner ||= Chef12HomebrewUser.new.find_homebrew_uid
         rescue Chef::Exceptions::CannotDetermineHomebrewOwner
           @homebrew_owner ||= calculate_owner
         end

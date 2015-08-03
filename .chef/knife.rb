@@ -9,3 +9,4 @@ validation_client_name   "udproducts-validator"
 validation_key           "#{current_dir}/udproducts-validator.pem"
 chef_server_url          "https://api.opscode.com/organizations/udproducts"
 cookbook_path            ["#{current_dir}/../cookbooks"]
+

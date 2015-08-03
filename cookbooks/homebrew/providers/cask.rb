@@ -17,7 +17,7 @@ end
 action :install do
   unless @cask.casked
     execute "installing cask #{new_resource.name}" do
-      command "/usr/local/bin/brew cask install #{new_resource.name} #{new_resource.options}"
+      command "/usr/local/bin/brew cask install #{new_resource.name}"
       user homebrew_owner
     end
   end
