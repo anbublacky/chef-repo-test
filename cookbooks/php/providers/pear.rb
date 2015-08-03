@@ -116,7 +116,6 @@ end
 
 def current_installed_version
   @current_installed_version ||= begin
-                                   v = nil
                                    version_check_cmd = "#{@bin} -d "
                                    version_check_cmd << " preferred_state=#{can_haz(@new_resource, 'preferred_state')}"
                                    version_check_cmd << " list#{expand_channel(can_haz(@new_resource, 'channel'))}"
@@ -132,7 +131,7 @@ def candidate_version
                            candidate_version_cmd = "#{@bin} -d "
                            candidate_version_cmd << "preferred_state=#{can_haz(@new_resource, 'preferred_state')}"
                            candidate_version_cmd << " search#{expand_channel(can_haz(@new_resource, 'channel'))}"
-                           candidate_version_cmd << "#{@new_resource.package_name}"
+                           candidate_version_cmd << " #{@new_resource.package_name}"
                            p = shell_out(candidate_version_cmd)
                            response = nil
                            response = grep_for_version(p.stdout, @new_resource.package_name) if p.stdout =~ /\.?Matched packages/i
@@ -141,7 +140,7 @@ def candidate_version
 end
 
 def install_package(name, version)
-  command = "echo \"\r\" | #{@bin} -d"
+  command = "printf \"\r\" | #{@bin} -d"
   command << " preferred_state=#{can_haz(@new_resource, 'preferred_state')}"
   command << " install -a#{expand_options(@new_resource.options)}"
   command << " #{prefix_channel(can_haz(@new_resource, 'channel'))}#{name}"
@@ -152,7 +151,7 @@ def install_package(name, version)
 end
 
 def upgrade_package(name, version)
-  command = "echo \"\r\" | #{@bin} -d"
+  command = "printf \"\r\" | #{@bin} -d"
   command << " preferred_state=#{can_haz(@new_resource, 'preferred_state')}"
   command << " upgrade -a#{expand_options(@new_resource.options)}"
   command << " #{prefix_channel(can_haz(@new_resource, 'channel'))}#{name}"
@@ -237,6 +236,13 @@ def manage_pecl_ini(name, action, directives, zend_extensions)
                  [(zend ? filepath : rel_file), zend]
                end
   ]
+
+  directory "#{node['php']['ext_conf_dir']}" do
+    owner 'root'
+    group 'root'
+    mode '0644'
+    recursive true
+  end
 
   template "#{node['php']['ext_conf_dir']}/#{name}.ini" do
     source 'extension.ini.erb'
