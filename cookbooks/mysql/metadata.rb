@@ -4,7 +4,7 @@ maintainer_email  'cookbooks@opscode.com'
 license           'Apache 2.0'
 description       'Installs and configures mysql for client or server'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           '5.0.0'
+version           '4.1.2'
 recipe            'mysql', 'Includes the client recipe to configure a client'
 recipe            'mysql::client', 'Installs packages required for mysql clients using run_action magic'
 recipe            'mysql::server', 'Installs packages required for mysql servers w/o manual intervention'
@@ -24,8 +24,8 @@ supports 'scientific'
 supports 'suse'
 supports 'windows'
 
-depends 'openssl'
-depends 'build-essential'
+depends 'openssl',         '~> 1.1'
+depends 'build-essential', '~> 1.4'
 
 # wat
 depends 'homebrew'
