@@ -17,6 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+package 'php5-cli' do
+  action :install
+end
 
 template "#{node['php']['conf_dir']}/php.ini" do
 	source node['php']['ini']['template']

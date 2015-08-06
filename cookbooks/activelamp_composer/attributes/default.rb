@@ -1,0 +1,1 @@
+default[:composer][:global_path] = '/usr/local/bin/composer'

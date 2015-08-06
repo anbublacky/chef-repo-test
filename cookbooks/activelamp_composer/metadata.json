@@ -1,0 +1,39 @@
+{
+  "name": "activelamp_composer",
+  "description": "Provides the `composer` resource.",
+  "long_description": "Provides the `composer` resource that can interact with Composer projects.",
+  "maintainer": "Bez Hermoso, ActiveLAMP",
+  "maintainer_email": "bez@activelamp.com",
+  "license": "Apache 2.0",
+  "platforms": {
+
+  },
+  "dependencies": {
+
+  },
+  "recommendations": {
+
+  },
+  "suggestions": {
+
+  },
+  "conflicting": {
+
+  },
+  "providing": {
+
+  },
+  "replacing": {
+
+  },
+  "attributes": {
+
+  },
+  "groupings": {
+
+  },
+  "recipes": {
+
+  },
+  "version": "0.0.1"
+}

@@ -20,6 +20,15 @@
 #
 
 include_recipe "php::#{node['php']['install_method']}"
+package 'php-pear' do
+  action :install
+end
+package 'php5-gd' do
+  action :install
+end
+package 'php5-fpm' do
+  action :install
+end
 
 # update the main channels
 php_pear_channel 'pear.php.net' do
