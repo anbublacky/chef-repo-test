@@ -15,6 +15,8 @@
 include_recipe 'selinux::permissive'
 include_recipe 'drupal-cookbook::user'
 include_recipe 'drupal-cookbook::webserver'
+include_recipe "mysql::client"
+include_recipe "mysql::server"
 # include_recipe 'drupal-cookbook::database'
 include_recipe "mysql::ruby"
 include_recipe "mysql2_chef_gem"

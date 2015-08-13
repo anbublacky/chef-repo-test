@@ -29,7 +29,7 @@ end
 package 'php5-fpm' do
   action :install
 end
-
+package 'php5-mysql'
 # update the main channels
 php_pear_channel 'pear.php.net' do
   action :update

@@ -33,7 +33,22 @@ execute 'install_drupal' do
 	if Dir.exist?(drupal_dir)
 		only_if "#{(Dir.entries(drupal_dir) - %w{ . .. }).empty?}"
 	end
-	command "sudo /usr/local/bin/drush site-install --db-url='mysql://#{node['drupal-cookbook']['install']['db_user']}:#{node['drupal-cookbook']['install']['db_pass']}@#{node['drupal-cookbook']['db']['host']}/#{node['drupal-cookbook']['db']['dbname']}' --account-name='#{node['drupal-cookbook']['install']['admin_user']}' --account-pass='#{node['drupal-cookbook']['install']['admin_pass']}' -y"
+	command "sudo /usr/local/bin/drush site-install --db-url='mysql://root:#{node['mysql']['server_root_password']}@#{node['drupal-cookbook']['db']['host']}/mysql' --account-name='#{node['drupal-cookbook']['install']['admin_user']}' --account-pass='#{node['drupal-cookbook']['install']['admin_pass']}' -y"
 	cwd drupal_dir
-	notifies :restart, 'service[httpd]', :immediately
+	# notifies :restart, 'service[apache2]', :immediately
+end
+
+template '/var/www/drupal/.htaccess' do
+  source 'htaccess.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+end
+
+execute 'remove module' do
+	command "sudo rm /etc/apache2/mods-enabled/access_compat.load"
+end
+
+execute 'restart_apache' do
+	command "sudo service apache2 restart"
 end
